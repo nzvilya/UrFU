@@ -1,0 +1,10 @@
+# IDE files and directories
+
+.vs/
+
+.idea/
+
+
+bin/
+
+obj/
