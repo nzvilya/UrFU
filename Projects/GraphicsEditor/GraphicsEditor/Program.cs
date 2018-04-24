@@ -4,12 +4,12 @@ using DrawablesUI;
 
 namespace GraphicsEditor
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var picture = new Picture();
-            var ui = new DrawableGUI(picture);
+            var ui = new DrawableGui(picture);
             var app = new Application();
            
             app.AddCommand(new ExitCommand(app));

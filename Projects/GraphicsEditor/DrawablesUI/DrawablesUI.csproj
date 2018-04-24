@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrawableGUI.cs" />
+    <Compile Include="DrawableGui.cs" />
     <Compile Include="GraphicsDrawer.cs" />
     <Compile Include="IDrawable.cs" />
     <Compile Include="IDrawer.cs" />

@@ -6,13 +6,13 @@ namespace DrawablesUI
 {
     public class GraphicsDrawer : IDrawer, IDisposable
     {
-        private readonly Graphics graph;
-        private float pointWidth;
-        private Pen pen = new Pen(Color.Black, 2);
+        private readonly Graphics _graph;
+        private float _pointWidth;
+        private Pen _pen = new Pen(Color.Black, 2);
 
         public GraphicsDrawer(Graphics g)
         {
-            graph = g;
+            _graph = g;
             g.PageUnit = GraphicsUnit.Pixel;
             g.PageScale = 1;
             g.CompositingQuality = CompositingQuality.HighQuality;
@@ -21,42 +21,42 @@ namespace DrawablesUI
 
         public void SelectPen(Color color, int width = 2)
         {
-            pen.Dispose();
-            pen = new Pen(color, width);
-            pointWidth = width / graph.PageScale;
+            _pen.Dispose();
+            _pen = new Pen(color, width);
+            _pointWidth = width / _graph.PageScale;
         }
 
         public void DrawPoint(PointF point)
         {
-            using (var b = new SolidBrush(pen.Color))
+            using (var b = new SolidBrush(_pen.Color))
             {
-                graph.FillEllipse(b, new RectangleF(
-                    new PointF(point.X - pointWidth / 2, point.Y - pointWidth / 2),
-                    new SizeF(pointWidth, pointWidth)
+                _graph.FillEllipse(b, new RectangleF(
+                    new PointF(point.X - _pointWidth / 2, point.Y - _pointWidth / 2),
+                    new SizeF(_pointWidth, _pointWidth)
                     ));
             }
         }
 
         public void DrawLine(PointF start, PointF end)
         {
-            graph.DrawLine(pen, start, end);
+            _graph.DrawLine(_pen, start, end);
         }
 
         public void DrawEllipseArc(PointF center, SizeF sizes, 
             float startAngle = 0, float endAngle = 360, float rotate = 0)
         {
-            graph.TranslateTransform(center.X, center.Y);
-            graph.RotateTransform(rotate);
-            graph.TranslateTransform(-center.X, -center.Y);
-            graph.DrawArc(pen, new RectangleF(
+            _graph.TranslateTransform(center.X, center.Y);
+            _graph.RotateTransform(rotate);
+            _graph.TranslateTransform(-center.X, -center.Y);
+            _graph.DrawArc(_pen, new RectangleF(
                 new PointF(center.X - sizes.Width / 2, center.Y - sizes.Height / 2), sizes),
                 startAngle, endAngle);
-            graph.ResetTransform();
+            _graph.ResetTransform();
         }
 
         public void Dispose()
         {
-            pen.Dispose();
+            _pen.Dispose();
         }
     }
 }

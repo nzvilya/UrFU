@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ConsoleUI
 {
@@ -6,7 +7,7 @@ namespace ConsoleUI
     {
         public string Name { get; set; }
         public string Help => "Command not found";
-        public string[] Synonyms => new string[] { };
+        public IEnumerable<string> Synonyms => new string[] { };
         public string Description => " ";
 
         public void Execute(params string[] parameters)

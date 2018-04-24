@@ -1,22 +1,24 @@
-﻿namespace ConsoleUI
+﻿using System.Collections.Generic;
+
+namespace ConsoleUI
 {
     public class ExitCommand : ICommand
     {
-        Application app;
+        private readonly Application _app;
 
         public ExitCommand(Application app)
         {
-            this.app = app;
+            _app = app;
         }
 
         public string Name => "exit";
         public string Help => "Exit the program";
-        public string[] Synonyms => new string[] { "quit", "bye" };
+        public IEnumerable<string> Synonyms => new[] { "quit", "bye" };
         public string Description => "Exit the program";
         
         public void Execute(params string[] parameters)
         {
-            app.Exit();
+            _app.Exit();
         }
     }
 }
